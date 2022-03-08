@@ -1,1 +1,87 @@
+ pwd
+/home/runner/Test3Session2
+ gcc -g p2final.c
+ ./a.out
+Enter the fractio
+2
+3
+Enter the fractio
+4
 
+5
+Enter the fractio
+6
+7
+the smallest fraction is 67
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x876: file p2final.c, line 38.
+(gdb) r
+Starting program: /home/runner/Test3Session2/a.out 
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at p2final.c:38
+38      f1=input_fraction();
+(gdb) n
+Enter the fractio
+n
+39      f2=input_fraction();
+(gdb) n
+Enter the fractio
+40      f3=input_fraction();
+(gdb) n
+Enter the fractio
+41      s=smallest(f1,f2,f3);
+(gdb) n
+
+Program received signal SIGFPE, Arithmetic exception.
+0x000055c82dc007f3 in smallest (f1=..., f2=..., f3=...) at p2final.c:19
+19      int num1=f1.num+common_denominator/f1.den;
+(gdb) n
+
+Program terminated with signal SIGFPE, Arithmetic exception.
+The program no longer exists.
+(gdb) l
+14  }
+15
+16  Fraction smallest(Fraction f1, Fraction f2, Fraction f3)
+17  {
+18      int common_denominator=f1.den*f2.den*f3.den;
+19      int num1=f1.num+common_denominator/f1.den;
+20      int num2=f2.num+common_denominator/f2.den;
+21      int num3=f3.num+common_denominator/f3.den;
+22      if (num1<num2 && num1<num3)
+23         return f1;
+(gdb) s
+The program is not being run.
+(gdb) p
+The history is empty.
+(gdb) c
+The program is not being run.
+(gdb) l
+24      else if (num2<num3)
+25         return f2;
+26      else
+27         return f3;
+28  }
+29
+30   void output(Fraction s)
+31  {
+32    printf("the smallest fraction is %d%d\n",s.num,s.den);
+33    
+(gdb) 
